@@ -7,28 +7,31 @@ class Utils:
     __token = None
     __backend = None
 
-    def __getToken(fileName="token"):
+    def getToken(fileName="token"):
         try:
+            if Utils.__token != None:
+                return Utils.__token
             with open(fileName) as f:
                 Utils.__token = f.readline()
+                return Utils.__token
         except :
             pass
 
-    def __connect(backendName):
-        if Utils.__token == None:
-            Utils.__getToken()
-            if Utils.__token == None:
-                print("No token found")
-                return
+    def connect():
+        Utils.getToken()
         IBMProvider.save_account(token=Utils.__token, overwrite=True)
+
+    def getBackend(backendName):
         print("Connecting", end=" ")
         provider = IBMProvider()
         print(f"& getting: {backendName}...", end="\t")
         Utils.__backend = provider.get_backend(backendName)
-        print("Ready")
+        print("done")
+        return Utils.__backend
 
     def run(circuit, backendName="ibm_nairobi", shots=1024):
-        Utils.__connect(backendName)
+        Utils.connect()
+        Utils.getBackend(backendName)
         print("Executing...", end=" ")
         result = execute(circuit, backend=Utils.__backend, shots=shots).result().get_counts(circuit)
         print("done")
