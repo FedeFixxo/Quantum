@@ -9,4 +9,5 @@ circuit.measure(qreg_q[1], creg_c[1])
 circuit.measure(qreg_q[0], creg_c[0])
 circuit.measure(qreg_q[1], creg_c[1])
 
-Utils.plotCountBars(LocalUtils.simulate(circuit))
+Utils.plotCountBars(LocalUtils.simulate(circuit, "ibm_nairobi"))
+# Utils.plotCountBars(LocalUtils.runLocal(circuit)) #Simulation without noise

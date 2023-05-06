@@ -16,7 +16,12 @@ class LocalUtils:
     def simulate(circuit, backendName="ibm_nairobi", shots=1024, simulationBackendName="qasm_simulator"):
         (noise, topology) = LocalUtils.getSimulationDetails(backendName)
         print("Simulating...", end=" ")
-        result = execute(circuit, backend=Aer.get_backend(simulationBackendName) , shots=1024, noise_model=noise, coupling_map=topology, basis_gates=noise.basis_gates).result().get_counts(circuit)
+        result = execute(circuit, backend=Aer.get_backend(simulationBackendName) , shots=shots, noise_model=noise, coupling_map=topology, basis_gates=noise.basis_gates).result().get_counts(circuit)
         print("done")
         return result
-        
+
+    def runLocal(circuit, shots=1024, simulationBackendName="qasm_simulator"):
+        print("Simulating...", end=" ")
+        result = execute(circuit, backend=Aer.get_backend(simulationBackendName) , shots=shots).result().get_counts(circuit)
+        print("done")
+        return result
