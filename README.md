@@ -5,4 +5,5 @@ Some code written while attending the introduction to quantum information and ca
 
 * Require:
 	* matplotlib
-	* qiskit with Aer
+	* qiskit
+	* qiskit_ibm_provider
