@@ -4,6 +4,8 @@ from sys import argv, exit
 def main():
     configuration = assertInputFormat(argv[1]) if len(argv) > 1 else "0000"
 
+    configuration = "11011"
+
     qreg_q = QuantumRegister(len(configuration) + 1, 'q')
     creg_c = ClassicalRegister(len(configuration), 'c')
     circuit = QuantumCircuit(qreg_q, creg_c)

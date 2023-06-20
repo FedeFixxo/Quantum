@@ -8,9 +8,8 @@ circuit.h(qreg_q[0])
 circuit.x(qreg_q[1])
 circuit.h(qreg_q[1])
 
-
 circuit.cx(qreg_q[0], qreg_q[1])
 circuit.h(qreg_q[0])
 circuit.measure(qreg_q[0], creg_c[0])
 
-Utils.plotCountBars(LocalUtils.simulate(circuit)) #Simulation without noise
+Utils.plotCountBars(LocalUtils.simulate(circuit))
